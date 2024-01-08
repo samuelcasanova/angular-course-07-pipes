@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <p>Assignment: create a reverse pipe to show the size of the server reversed, and also a sort pipe to sort the list of servers by instance name</p>
       <label for="search">Search: </label>
       <input type="text" [(ngModel)]="filteredStatus"/>
       <hr/>
@@ -8,14 +9,13 @@
       <ul class="list-group">
         <li
           class="list-group-item"
-          
-          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          *ngFor="let server of servers | filter:filteredStatus:'status' | sort:'name'"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">
             {{ server.status }}
           </span>
-          <strong>{{ server.name | shorten:10 }}</strong> | {{ server.instanceType }} | {{ server.started }}
+          <strong>{{ server.name | shorten:10 }}</strong> | {{ server.instanceType | reverse }} | {{ server.started }}
         </li>
       </ul>
     </div>
